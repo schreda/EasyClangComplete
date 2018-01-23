@@ -1,0 +1,109 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "EasyClangComplete\n\n\nPlugin for Sublime Text 3 for easy to use, out of the box autocompletions for\nC, C++, Objective-C, and Objective-C++.\n\n\n\n\nJump right in!\n\n\nYou are just three simple steps away!\n\n\n1. Install this plugin\n\n\n\n\nBest is to use \nPackage Control\n\n\nCTRL\n+\nShift\n+\nP\n and install\n    \nEasyClangComplete\n\n\nIf you don't have Package Control (you should)\n\n\ndownload one of the releases from\n    \nhere\n and restart Sublime Text after unpacking.\n\n\n\n\n2. Install clang\n\n\n\n\nUbuntu\n        : \nsudo apt-get install clang\n\n\nOSX\n           : ships \nclang\n by default. You are all set!\n\n\nWindows\n       : install the latest release from clang website.\n\n\nOther Systems\n : use your package manager or install from clang website.\n\n\nclang website: http://llvm.org/releases/download.html\n\n\n\n\n3. Configure your includes\n\n\nUsing CMake?\n\n\nPlugin will run cmake on a proper \nCMakeLists.txt\n in your project folder and\nwill use information from it to complete your code out of the box.\n\n\nHave a compilation database?\n\n\nPlugin will search for a compilation database \ncompile_commands.json\n in the\nproject folder and will load it to complete your code. If you want to specify a custom path to a comilation database you can do it in settings:\n\n\n\"flags_sources\": [\n    {\"file\": \"compile_commands.json\", \"search_in\": \"<YOUR_PATH>\"},\n  ],\n\n\n\n\nNone of the above?\n\n\nYou will need a little bit of manual setup for now. \nClang\n will automatically\nsearch for headers in the folder that contains the file you are working on and\nits parent. If you have a more sophisticated project you will need to help\n\nclang\n just a little bit. There are three ways to do it.\n\n\nPick \nANY\n of the following:\n\n\n\n\nSet include dirs in \n\"common_flags\"\n setting in \nUser Settings\n:\n\n\nSee default \nsettings\n to get started.\n    These flags will be included in every project you run.\n\n\nAdd \n.clang_complete\n file to the root of your project folder.\n\n\nThis file should contain all includes and macroses you want to use.\n\n\nExample file contents:\n  \n-Isrc\n  -I/usr/include\n\n\nOverride \n\"common_flags\"\n setting in your project file! Just define the same\n  setting in project specific settings with either one of two prefixes:\n  \n\"ecc_\"\n or \n\"easy_clang_complete_\"\n. See the project file in this repo for a\n  working example. Minimal example for clarity:\n\n\n\n\njson\n  {\n    \"settings\":\n    {\n      \"ecc_common_flags\": [\"-Isrc\", \"-I/usr/include\"],\n      \"easy_clang_complete_verbose\": true\n    }\n  }\n\n\nThese settings are prioritized in a configurable way. Check out the settings to\nlearn more about it.\n\n\nThat's it! You're ready to use the plugin!\n\n\nMore on the plugin\n\n\nAll the essential information to make the plugin run is written above. If you\nare still interested in more details - please read on.\n\n\nGeneral info\n\n\nThe plugin uses \nlibclang\n with its python bindings. This method fully utilizes\ncaching from \nlibclang\n that makes your completions blazingly fast. It is unit\ntested to complete STL functions on Linux, OSX and Windows platforms.\n\n\nThere is also a fallback mode if something is wrong with the \nlibclang\n one\nthat parses the output from \nclang -Xclang -code-completion-at\n which is called\nfrom the command line.\n\n\nThis plugin is intended to be easy to use. It should autocomplete STL out of\nthe box and is capable of working with multiple flag storages, such as a\ncompilation database or a \n.clang_complete\n file. If you experience problems -\ncreate an issue. I will try to respond as soon as possible.\n\n\nCommands\n\n\nHere are some highlights for the commands. You can see all commands in command\npallet. Open it by pressing:\n\n\n\n\nWindows/Linux: \nCtrl\n + \nShift\n + \nP\n\n\nOSX: \nCmd\n + \nShift\n + \nP\n\n\n\n\nAll the commands of this plugin start with \nEasyClangComplete:\n and should be\nself explanatory. Open an issue if they are not.\n\n\nSettings\n\n\nPlease see the default settings \nfile\n\nshipped with the plugin for explanations and sane default values.\n\n\nCredits\n\n\nThe whole work seen here was originally a fork of another repository:\n\nClangAutoComplete\n\n\nHowever, with time this plugin has grown quite different from its origin and\nthis is why you see it as a separate package now. Anyway, feel free to check\nout what \nClangAutoComplete\n has to offer and come back if you still like this\nplugin more.\n\n\nThe trick with multiple \nclang.cindex\n files is inspired by this repo:\n\nclangHelper\n. Thanks for inspiration!\n\n\nThe progress indicator idea is from\n\nColorSublime\n plugin.\n\n\nSome functionality is there only because of the awesome contributors to this\nproject. To see their names plese check out the contributors page.\n\n\nTests\n\n\nMost crucial functionality is covered with unit tests using\n\nUnitTesting\n Sublime Text plugin.\n\n\nContributing\n\n\nContributions are welcome! Look at the issue list. If there is something you\nthink you can tackle, write about it in that issue and submit a Pull Request.\n\n\nPull requests and some issues are partially managed by\n\nmaintainerd\n.\n\n\nPlease don't jump into creating a Pull Request straight away and open an issue\nfirst. This way, we can synchronize our views on the problem, so that everyone\navoids losing time.\n\n\nThere are two branches:\n- \nmaster\n: should be stable and generally following the last release. Used for\n  urgent bug fixing.\n- \ndev\n: used to develop new features. Merges with master right before a new\n  release.\n\n\nCode style:\n- Line width is \n80\n characters\n- Every public function should be documented.\n- The code \nmust\n pass linters:\n  + \npep8\n\n  + \npep257\n: ignoring \n[\"D209\", \"D203\", \"D204\", \"D213\", \"D406\", \"D407\"]\n\n\nPlease ensure, that your code conforms to this.\n\n\nSupport it!\n\n\n\n\n\n\n\n\n\n\nCurrent sponsor of this project is my sleep.\nPlease buy me a cup of tea if you appreciate the effort.\n\n\nAlso, pull requests are welcome! And don't forget to tell people about this\nplugin! The more people use it - the merrier.\n\n\n                     \u2554\u2550\u2557\u250c\u2500\u2510\u250c\u2500\u2510\u252c \u252c  \u2554\u2550\u2557\u252c  \u250c\u2500\u2510\u250c\u2510\u250c\u250c\u2500\u2510  \u2554\u2550\u2557\u250c\u2500\u2510\u250c\u252c\u2510\u250c\u2500\u2510\u252c  \u250c\u2500\u2510\u250c\u252c\u2510\u250c\u2500\u2510\n                     \u2551\u2563 \u251c\u2500\u2524\u2514\u2500\u2510\u2514\u252c\u2518  \u2551  \u2502  \u251c\u2500\u2524\u2502\u2502\u2502\u2502 \u252c  \u2551  \u2502 \u2502\u2502\u2502\u2502\u251c\u2500\u2518\u2502  \u251c\u2524  \u2502 \u251c\u2524\n                     \u255a\u2550\u255d\u2534 \u2534\u2514\u2500\u2518 \u2534   \u255a\u2550\u255d\u2534\u2500\u2518\u2534 \u2534\u2518\u2514\u2518\u2514\u2500\u2518  \u255a\u2550\u255d\u2514\u2500\u2518\u2534 \u2534\u2534  \u2534\u2500\u2518\u2514\u2500\u2518 \u2534 \u2514\u2500\u2518",
+            "title": "Home"
+        },
+        {
+            "location": "/#easyclangcomplete",
+            "text": "Plugin for Sublime Text 3 for easy to use, out of the box autocompletions for\nC, C++, Objective-C, and Objective-C++.",
+            "title": "EasyClangComplete"
+        },
+        {
+            "location": "/#jump-right-in",
+            "text": "You are just three simple steps away!",
+            "title": "Jump right in!"
+        },
+        {
+            "location": "/#1-install-this-plugin",
+            "text": "Best is to use  Package Control  CTRL + Shift + P  and install\n     EasyClangComplete  If you don't have Package Control (you should)  download one of the releases from\n     here  and restart Sublime Text after unpacking.",
+            "title": "1. Install this plugin"
+        },
+        {
+            "location": "/#2-install-clang",
+            "text": "Ubuntu         :  sudo apt-get install clang  OSX            : ships  clang  by default. You are all set!  Windows        : install the latest release from clang website.  Other Systems  : use your package manager or install from clang website.  clang website: http://llvm.org/releases/download.html",
+            "title": "2. Install clang"
+        },
+        {
+            "location": "/#3-configure-your-includes",
+            "text": "Using CMake?  Plugin will run cmake on a proper  CMakeLists.txt  in your project folder and\nwill use information from it to complete your code out of the box.  Have a compilation database?  Plugin will search for a compilation database  compile_commands.json  in the\nproject folder and will load it to complete your code. If you want to specify a custom path to a comilation database you can do it in settings:  \"flags_sources\": [\n    {\"file\": \"compile_commands.json\", \"search_in\": \"<YOUR_PATH>\"},\n  ],  None of the above?  You will need a little bit of manual setup for now.  Clang  will automatically\nsearch for headers in the folder that contains the file you are working on and\nits parent. If you have a more sophisticated project you will need to help clang  just a little bit. There are three ways to do it.  Pick  ANY  of the following:   Set include dirs in  \"common_flags\"  setting in  User Settings :  See default  settings  to get started.\n    These flags will be included in every project you run.  Add  .clang_complete  file to the root of your project folder.  This file should contain all includes and macroses you want to use.  Example file contents:\n   -Isrc\n  -I/usr/include  Override  \"common_flags\"  setting in your project file! Just define the same\n  setting in project specific settings with either one of two prefixes:\n   \"ecc_\"  or  \"easy_clang_complete_\" . See the project file in this repo for a\n  working example. Minimal example for clarity:   json\n  {\n    \"settings\":\n    {\n      \"ecc_common_flags\": [\"-Isrc\", \"-I/usr/include\"],\n      \"easy_clang_complete_verbose\": true\n    }\n  }  These settings are prioritized in a configurable way. Check out the settings to\nlearn more about it.",
+            "title": "3. Configure your includes"
+        },
+        {
+            "location": "/#thats-it-youre-ready-to-use-the-plugin",
+            "text": "",
+            "title": "That's it! You're ready to use the plugin!"
+        },
+        {
+            "location": "/#more-on-the-plugin",
+            "text": "All the essential information to make the plugin run is written above. If you\nare still interested in more details - please read on.",
+            "title": "More on the plugin"
+        },
+        {
+            "location": "/#general-info",
+            "text": "The plugin uses  libclang  with its python bindings. This method fully utilizes\ncaching from  libclang  that makes your completions blazingly fast. It is unit\ntested to complete STL functions on Linux, OSX and Windows platforms.  There is also a fallback mode if something is wrong with the  libclang  one\nthat parses the output from  clang -Xclang -code-completion-at  which is called\nfrom the command line.  This plugin is intended to be easy to use. It should autocomplete STL out of\nthe box and is capable of working with multiple flag storages, such as a\ncompilation database or a  .clang_complete  file. If you experience problems -\ncreate an issue. I will try to respond as soon as possible.",
+            "title": "General info"
+        },
+        {
+            "location": "/#commands",
+            "text": "Here are some highlights for the commands. You can see all commands in command\npallet. Open it by pressing:   Windows/Linux:  Ctrl  +  Shift  +  P  OSX:  Cmd  +  Shift  +  P   All the commands of this plugin start with  EasyClangComplete:  and should be\nself explanatory. Open an issue if they are not.",
+            "title": "Commands"
+        },
+        {
+            "location": "/#settings",
+            "text": "Please see the default settings  file \nshipped with the plugin for explanations and sane default values.",
+            "title": "Settings"
+        },
+        {
+            "location": "/#credits",
+            "text": "The whole work seen here was originally a fork of another repository: ClangAutoComplete  However, with time this plugin has grown quite different from its origin and\nthis is why you see it as a separate package now. Anyway, feel free to check\nout what  ClangAutoComplete  has to offer and come back if you still like this\nplugin more.  The trick with multiple  clang.cindex  files is inspired by this repo: clangHelper . Thanks for inspiration!  The progress indicator idea is from ColorSublime  plugin.  Some functionality is there only because of the awesome contributors to this\nproject. To see their names plese check out the contributors page.",
+            "title": "Credits"
+        },
+        {
+            "location": "/#tests",
+            "text": "Most crucial functionality is covered with unit tests using UnitTesting  Sublime Text plugin.",
+            "title": "Tests"
+        },
+        {
+            "location": "/#contributing",
+            "text": "Contributions are welcome! Look at the issue list. If there is something you\nthink you can tackle, write about it in that issue and submit a Pull Request.  Pull requests and some issues are partially managed by maintainerd .  Please don't jump into creating a Pull Request straight away and open an issue\nfirst. This way, we can synchronize our views on the problem, so that everyone\navoids losing time.  There are two branches:\n-  master : should be stable and generally following the last release. Used for\n  urgent bug fixing.\n-  dev : used to develop new features. Merges with master right before a new\n  release.  Code style:\n- Line width is  80  characters\n- Every public function should be documented.\n- The code  must  pass linters:\n  +  pep8 \n  +  pep257 : ignoring  [\"D209\", \"D203\", \"D204\", \"D213\", \"D406\", \"D407\"]  Please ensure, that your code conforms to this.",
+            "title": "Contributing"
+        },
+        {
+            "location": "/#support-it",
+            "text": "Current sponsor of this project is my sleep.\nPlease buy me a cup of tea if you appreciate the effort.  Also, pull requests are welcome! And don't forget to tell people about this\nplugin! The more people use it - the merrier.                       \u2554\u2550\u2557\u250c\u2500\u2510\u250c\u2500\u2510\u252c \u252c  \u2554\u2550\u2557\u252c  \u250c\u2500\u2510\u250c\u2510\u250c\u250c\u2500\u2510  \u2554\u2550\u2557\u250c\u2500\u2510\u250c\u252c\u2510\u250c\u2500\u2510\u252c  \u250c\u2500\u2510\u250c\u252c\u2510\u250c\u2500\u2510\n                     \u2551\u2563 \u251c\u2500\u2524\u2514\u2500\u2510\u2514\u252c\u2518  \u2551  \u2502  \u251c\u2500\u2524\u2502\u2502\u2502\u2502 \u252c  \u2551  \u2502 \u2502\u2502\u2502\u2502\u251c\u2500\u2518\u2502  \u251c\u2524  \u2502 \u251c\u2524\n                     \u255a\u2550\u255d\u2534 \u2534\u2514\u2500\u2518 \u2534   \u255a\u2550\u255d\u2534\u2500\u2518\u2534 \u2534\u2518\u2514\u2518\u2514\u2500\u2518  \u255a\u2550\u255d\u2514\u2500\u2518\u2534 \u2534\u2534  \u2534\u2500\u2518\u2514\u2500\u2518 \u2534 \u2514\u2500\u2518",
+            "title": "Support it!"
+        },
+        {
+            "location": "/about/",
+            "text": "Et sine fluctibus\n\n\nColoni non partes praecontrectatque recepit faciemque in\n\n\nLorem markdownum properas: prius qua desiluit \niungere\n.\nNemus umerus vocatos, enim nec. Typhoea coniunx ossibus respicit serta. Cum nunc\n\nterraeque iacent\n cecini. Pagasaeae\nmortalem iam nata fecit terras, sed ramos \nexcepit variarum\n tactuque, possunt\nilla, eventu praetemptanda fuit?\n\n\n\n\nVos iamque servent abnuit\n\n\nAethiopum ut adunca meum divinante placuisse\n\n\nCorpora nec\n\n\n\n\nCurvique adempta quod illis iterum\n\n\nFato corripuere cecidere, deferre. Traherent de inquit Phaeocomes, dominum in\ncuius utrumque valens sed. Citharam orbem certare non fulmina nunc illic pellant\nceleres, fert est solvitur Quirine dedit sit. Diversa ruat et deducit Nisus\nquoniam sic petendum a medio annos virga: humum. Pars orba respiciens: silvas\npurpurea tantus luporum neque consistere at quatiens crimine insignia cunctosque\nalebat mugitus Aesoniden facinus ipse?\n\n\nNumquam et neque de et feri prima\n\n\nEt Claros uterum. A tantum dum esto Ceycis facilis funera et pectora victoria\nremansit, pariterque. Iamque pedis eburnea neque, esset, bracchia lege deque\nvidere. Ille primordia Ulixes silenti ibant sed propior servat.\n\n\nif (opacity_queue_text * post != codeIct.wrap_sample(bps, deprecatedKey)) {\n    terabyte.ipDragMegapixel = 3;\n}\ndmaCookieSms = 5 - device;\ncropPetabyte -= monochrome_rup_pum;\npageRawBare = ip(data_third_chip, software_pda);\n\n\n\nTum alta praeter Mnemonides caeli\n\n\nThebis semianimi Phasidos. Haud membra aut est orbis divino: ire ruit \nedidit\nter unde\n tendentes. Locum et impune excutit et tempora animalia tegmina, mihi\nducat pulvere. Duorum dedisset qualem alma nullam et nunc detque namque si\nAchille ripae errorem media quo vox. Arma tulit!\n\n\nPrecari inque latentis ipsum modumque iuveni, saecula cum postquam? Tibi dumque.\nAnum et nescio.",
+            "title": "About"
+        },
+        {
+            "location": "/about/#et-sine-fluctibus",
+            "text": "",
+            "title": "Et sine fluctibus"
+        },
+        {
+            "location": "/about/#coloni-non-partes-praecontrectatque-recepit-faciemque-in",
+            "text": "Lorem markdownum properas: prius qua desiluit  iungere .\nNemus umerus vocatos, enim nec. Typhoea coniunx ossibus respicit serta. Cum nunc terraeque iacent  cecini. Pagasaeae\nmortalem iam nata fecit terras, sed ramos  excepit variarum  tactuque, possunt\nilla, eventu praetemptanda fuit?   Vos iamque servent abnuit  Aethiopum ut adunca meum divinante placuisse  Corpora nec",
+            "title": "Coloni non partes praecontrectatque recepit faciemque in"
+        },
+        {
+            "location": "/about/#curvique-adempta-quod-illis-iterum",
+            "text": "Fato corripuere cecidere, deferre. Traherent de inquit Phaeocomes, dominum in\ncuius utrumque valens sed. Citharam orbem certare non fulmina nunc illic pellant\nceleres, fert est solvitur Quirine dedit sit. Diversa ruat et deducit Nisus\nquoniam sic petendum a medio annos virga: humum. Pars orba respiciens: silvas\npurpurea tantus luporum neque consistere at quatiens crimine insignia cunctosque\nalebat mugitus Aesoniden facinus ipse?",
+            "title": "Curvique adempta quod illis iterum"
+        },
+        {
+            "location": "/about/#numquam-et-neque-de-et-feri-prima",
+            "text": "Et Claros uterum. A tantum dum esto Ceycis facilis funera et pectora victoria\nremansit, pariterque. Iamque pedis eburnea neque, esset, bracchia lege deque\nvidere. Ille primordia Ulixes silenti ibant sed propior servat.  if (opacity_queue_text * post != codeIct.wrap_sample(bps, deprecatedKey)) {\n    terabyte.ipDragMegapixel = 3;\n}\ndmaCookieSms = 5 - device;\ncropPetabyte -= monochrome_rup_pum;\npageRawBare = ip(data_third_chip, software_pda);",
+            "title": "Numquam et neque de et feri prima"
+        },
+        {
+            "location": "/about/#tum-alta-praeter-mnemonides-caeli",
+            "text": "Thebis semianimi Phasidos. Haud membra aut est orbis divino: ire ruit  edidit\nter unde  tendentes. Locum et impune excutit et tempora animalia tegmina, mihi\nducat pulvere. Duorum dedisset qualem alma nullam et nunc detque namque si\nAchille ripae errorem media quo vox. Arma tulit!  Precari inque latentis ipsum modumque iuveni, saecula cum postquam? Tibi dumque.\nAnum et nescio.",
+            "title": "Tum alta praeter Mnemonides caeli"
+        }
+    ]
+}
