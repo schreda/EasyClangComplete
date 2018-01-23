@@ -20,3 +20,7 @@
 EasyClangComplete.sublime-workspace
 
 *.pyc
+
+/docs/_site/
+
+/docs/Gemfile.lock
