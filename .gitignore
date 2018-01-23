@@ -24,3 +24,5 @@ EasyClangComplete.sublime-workspace
 /docs/_site/
 
 /docs/Gemfile.lock
+
+/docs/.sass-cache/
