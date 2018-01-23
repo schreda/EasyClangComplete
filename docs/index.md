@@ -1,15 +1,12 @@
----
-layout: docs
----
-
 # EasyClangComplete #
 
 Plugin for Sublime Text 3 for easy to use, out of the box autocompletions for
-C-family languages.
+C, C++, Objective-C, and Objective-C++.
 
 ![Example](img/autocomplete.gif)
 
-# Set everything up in 3 simple steps! #
+# Jump right in! #
+You are just three simple steps away!
 
 ## 1. Install this plugin ##
 - Best is to use [Package Control](https://packagecontrol.io/installation)
