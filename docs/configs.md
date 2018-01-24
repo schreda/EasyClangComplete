@@ -14,7 +14,10 @@ in your settings. See how to set this setting correctly
 [here](settings.md#flags_sources).
 
 ## Using catkin ##
-For those using `catkin` (e.g. when developing with ROS) there is a special step that needs to be taken. By default when running Sublime Text from GUI it knows nothing about the paths set in `.bashrc` of your system. So we need to manually update the `CMAKE_PREFIX_PATH` to be able to find `catkin`:
+For those using `catkin` (e.g. when developing with ROS) there is a special
+step that needs to be taken. By default when running Sublime Text from GUI it
+knows nothing about the paths set in `.bashrc` of your system. So we need to
+manually update the `CMAKE_PREFIX_PATH` to be able to find `catkin`:
 
 ```json
 "flags_sources": [
