@@ -58,8 +58,8 @@ class SettingsStorage:
     NONE_STYLE = "none"
 
     GUTTER_STYLES = [GUTTER_COLOR_STYLE,
-                     GUTTER_MONO_STYLE, 
-                     GUTTER_DOT_STYLE, 
+                     GUTTER_MONO_STYLE,
+                     GUTTER_DOT_STYLE,
                      NONE_STYLE]
 
     # refer to Preferences.sublime-settings for usage explanation
