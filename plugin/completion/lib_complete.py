@@ -95,8 +95,7 @@ class Completer(BaseCompleter):
             # initialize ignore list to account for private methods etc.
             self.default_ignore_list = [self.cindex.CursorKind.DESTRUCTOR]
             self.bigger_ignore_list = self.default_ignore_list +\
-                [self.cindex.CursorKind.CLASS_DECL,
-                 self.cindex.CursorKind.ENUM_CONSTANT_DECL]
+                [self.cindex.CursorKind.CLASS_DECL]
 
             # If we haven't already initialized the clang Python bindings, try
             # to figure out the path libclang.
